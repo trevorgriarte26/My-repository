@@ -63,4 +63,5 @@ function draw(){
     platform.display();
 
     console.log("Welcome")
+    console.log("Sure")
 }
