@@ -36,9 +36,8 @@ function setup(){
     log5 = new Log(870,120,150, -PI/7);
 
     bird = new Bird(100,100);
-    rope = new Sling(bird.body,log4.body)
+    rope = new Sling(bird.body,{x:200,y:50})
 
-    rope1 = new Sling(pig1.body,box1.body)
 }
 
 function draw(){
@@ -66,8 +65,17 @@ function draw(){
     platform.display();
 
     rope.display();
-    rope1.display();
+
 
     console.log("Welcome")
     console.log("Sure")
+}
+
+function mouseDragged(){
+    Matter.Body.setPosition(bird.body,{x:mouseX,y:mouseY})
+}
+
+function mouseReleased(){
+    rope.fly()
+    console.log("mouseReleased")
 }

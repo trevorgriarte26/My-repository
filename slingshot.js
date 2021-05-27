@@ -1,17 +1,23 @@
 class Sling {
-    constructor(bodyA,bodyB){
+    constructor(bodyA,pointB){
         var options = {
             bodyA: bodyA,
-            bodyB: bodyB,
+            pointB: pointB,
             length: 100,
             stiffness: 0.5
         }
         this.bodyA = bodyA
-        this.bodyB = bodyB
+        this.pointB = pointB
         this.rope = Constraint.create(options)
         World.add(world,this.rope)
     }
     display(){
-        line(this.bodyA.position.x,this.bodyA.position.y,this.bodyB.position.x,this.bodyB.position.y)
+        if(this.rope.bodyA != null){
+            strokeWeight(5)
+            line(this.bodyA.position.x,this.bodyA.position.y,this.pointB.x,this.pointB.y)
+        }
+    }
+    fly(){
+        this.rope.bodyA = null
     }
 }
