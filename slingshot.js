@@ -4,7 +4,7 @@ class Sling {
             bodyA: bodyA,
             pointB: pointB,
             length: 10,
-            stiffness: 0.05
+            stiffness: 0.01
         }
         this.bodyA = bodyA
         this.pointB = pointB
