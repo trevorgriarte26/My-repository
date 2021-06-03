@@ -79,3 +79,9 @@ function mouseReleased(){
     rope.fly()
     console.log("mouseReleased")
 }
+
+function keyPressed(){
+    if(keyCode === 32){
+        rope.attach(bird.body)
+    }
+}

@@ -38,4 +38,7 @@ class Sling {
     fly(){
         this.rope.bodyA = null
     }
+    attach(body){
+       this.rope.bodyA = body 
+    }
 }
