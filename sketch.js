@@ -92,7 +92,7 @@ function keyPressed(){
 }
 
 async function getData(){
-    var data = await fetch('http://worldtimeapi.org/api/timezone/America/Los_Angeles')
+    var data = await fetch('https://worldtimeapi.org/api/timezone/America/Los_Angeles')
     var myData = await data.json()
     var day = myData.day_of_week
     switch(day){
