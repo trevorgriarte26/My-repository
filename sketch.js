@@ -6,9 +6,12 @@ const Constraint = Matter.Constraint;
 var engine, world;
 var box1, pig1;
 var backgroundImg,platform;
+var gameState = 'onSling'
+var bg
+var msg = "hi"
 
 function preload() {
-    backgroundImg = loadImage("sprites/bg.png");
+    getData();
 }
 
 function setup(){
@@ -41,11 +44,12 @@ function setup(){
 }
 
 function draw(){
-    background(backgroundImg);
+    if(backgroundImg){
+        background(backgroundImg);
+    }
+
     Engine.update(engine);
-    console.log(box2.body.position.x);
-    console.log(box2.body.position.y);
-    console.log(box2.body.angle);
+
     box1.display();
     box2.display();
     ground.display();
@@ -65,23 +69,54 @@ function draw(){
     platform.display();
 
     rope.display();
+    text(msg,50,50)
 
-
-    console.log("Welcome")
-    console.log("Sure")
 }
 
 function mouseDragged(){
+    if(gameState === 'onSling'){
     Matter.Body.setPosition(bird.body,{x:mouseX,y:mouseY})
+    }
 }
 
 function mouseReleased(){
+    gameState = 'released'
     rope.fly()
-    console.log("mouseReleased")
 }
 
 function keyPressed(){
     if(keyCode === 32){
+        gameState = 'onSling'
         rope.attach(bird.body)
     }
+}
+
+async function getData(){
+    var data = await fetch('http://worldtimeapi.org/api/timezone/America/Los_Angeles')
+    var myData = await data.json()
+    var day = myData.day_of_week
+    switch(day){
+        case 0: msg = "Today is Monday!"
+        break;
+        case 1: msg = "Today is Tuesday!"
+        break;
+        case 2: msg = "Today is Wednesday!"
+        break;
+        case 3: msg = "Today is Thursday!"
+        break;
+        case 4: msg = "Today is Friday!"
+        break;
+        case 5: msg = "Today is Saturday!"
+        break;
+        case 6: msg = "Today is Sunday!"
+        break;
+    }
+    console.log(myData)
+    var hour = myData.datetime.slice(11,13)
+    if(hour >= 6 && hour <= 19){
+        bg = loadImage("sprites/bg.png")
+    }else{
+        bg = loadImage("sprites/bg2.jpg")
+    }
+    backgroundImg = bg
 }

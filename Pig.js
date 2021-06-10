@@ -5,7 +5,6 @@ class Pig extends BaseClass {
     this.visibility = 255
   }
   display(){
-    console.log(this.body.speed)
     if(this.body.speed < 3){
       super.display()
     }else{
